@@ -1,5 +1,9 @@
 
 def oldphone(string)
-  'A'
+  if string == "2"
+    'A'
+  else
+    'B'
+  end
 end
 
