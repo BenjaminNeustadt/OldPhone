@@ -32,12 +32,36 @@ Letters = {
   "9999" => 'Z',
   }
 
-def oldphone(str)
-  if str.include?('*')
-    str.slice! str[str.index('*') - 1]
+class OldPhone
+
+  attr_reader :digit_input
+  attr_writer :oldphone
+
+  def initiliaze(digit_input)
+    @digit_input = digit_input
   end
-  result = str.scan(/0+|1+|2+|3+|4+|5+|6+|7+|8+|9+/)
-  translation = result.map {|digit_input| Letters[digit_input]}
-  translation.join
+
+  def oldphone(str)
+    if str.include?('*')
+      self.digit_input.slice! str[str.index('*') - 1]
+    end
+    result = self.digit_input.scan(/0+|1+|2+|3+|4+|5+|6+|7+|8+|9+/)
+    translation = result.map {|digit_input| Letters[digit_input]}
+    print_out(translation.join)
+  end
+
+  public
+
+  attr_reader :execute,
+              :print_out
+
+  def execute(digit_input)
+    oldphone(digit_input)
+  end
+
+  def print_out(translated)
+    puts translated
+  end
+
 end
 
