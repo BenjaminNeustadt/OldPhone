@@ -20,6 +20,10 @@ RSpec.describe 'OldPhone' do
       expect(oldphone("222*")).to eq "B"
     end
 
+    it 'can translate three letters on same digit' do
+      expect(oldphone("2 22 222")).to eq "ABC"
+    end
+
   end
 
 end
