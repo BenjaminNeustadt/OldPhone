@@ -2,8 +2,10 @@
 def oldphone(string)
   if string == "2"
     'A'
-  else
+  elsif string =="22"
     'B'
+  else
+    'C'
   end
 end
 
