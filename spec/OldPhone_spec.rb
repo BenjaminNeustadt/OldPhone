@@ -16,6 +16,10 @@ RSpec.describe 'OldPhone' do
       expect(oldphone("222")).to eq "C"
     end
 
+    it 'translates digits after removing character before *' do
+      expect(oldphone("222*")).to eq "B"
+    end
+
   end
 
 end
