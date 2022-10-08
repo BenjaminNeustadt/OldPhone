@@ -1,11 +1,8 @@
 
+Letters = { "2" => 'A', "22" => 'B', "222" => 'C'}
+LetterS = { "2" => 'A'}
+
 def oldphone(string)
-  if string == "2"
-    'A'
-  elsif string =="22"
-    'B'
-  else
-    'C'
-  end
+  Letters[string]
 end
 
