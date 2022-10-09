@@ -39,6 +39,7 @@ class OldPhone
 
   def initiliaze(digit_input)
     @digit_input = digit_input
+    execute(digit_input)
   end
 
   def oldphone(str)
@@ -50,6 +51,19 @@ class OldPhone
     print_out(translation.join)
   end
 
+=begin
+[NOTE] :NOTE:
+  oldphone should be the public facing interface method and the deletion is
+another method, and the mapping is again another one, the latter two being
+private, for internal use only. Therefore the "user" only interacts with
+oldphone - which is a public method.  The business logic shoud not happen on
+oldphone, it should happen behind the scenes in something that we can imagine
+to be a model (internal representation of waht should happen), if use the MVC
+design as an analogy.  The view is included in the public facing interface of
+oldphone, because its what is used to return something that can then be output
+by the user. RSFVC. Right said Fred View Controller
+=end
+
   public
 
   attr_reader :execute,
@@ -60,7 +74,7 @@ class OldPhone
   end
 
   def print_out(translated)
-    puts translated
+    translated.to_s
   end
 
 end
