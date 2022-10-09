@@ -33,10 +33,11 @@ Letters = {
   }
 
 def oldphone(str)
-  if str.include?('*')
-    str.slice! str[str.index('*') - 1]
+  result = str.scan(/0+|1+|2+|3+|4+|5+|6+|7+|8+|9+|\*/)
+  while result.include? '*'
+    result.delete_at(result.index('*') - 1)
+    result.delete_at(result.index('*'))
   end
-  result = str.scan(/0+|1+|2+|3+|4+|5+|6+|7+|8+|9+/)
   translation = result.map {|digit_input| Letters[digit_input]}
   translation.join
 end

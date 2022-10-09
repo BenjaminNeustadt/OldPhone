@@ -17,7 +17,7 @@ RSpec.describe 'OldPhone' do
     end
 
     it 'translates digits after removing character before *' do
-      expect(oldphone("222*")).to eq "B"
+      expect(oldphone("222*")).to eq ""
     end
 
     it 'can translate three letters on same digit' do
@@ -25,7 +25,9 @@ RSpec.describe 'OldPhone' do
     end
 
     it 'can translate whole alphabet' do
-      expect(oldphone("2 22 2223 33 3334 44 4445 55 5556 66 6667 77 777 77778 88 8889 99 999 9999")).to eq "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+      expected = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+      actual = oldphone("2 22 2223 33 3334 44 4445 55 5556 66 6667 77 777 77778 88 8889 99 999 9999")
+      expect(actual).to eq(expected)
     end
 
     it 'can translate with spaces' do
