@@ -41,4 +41,3 @@ def oldphone(str)
   translation = result.map {|digit_input| Letters[digit_input]}
   translation.join
 end
-
