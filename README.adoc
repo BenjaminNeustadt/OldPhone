@@ -2,12 +2,14 @@
 Benjamin Neustadt
 :source-highlighter: ruby
 :document-type: article
+// URLs:
+:url-csharp-version: https://github.com/BenjaminNeustadt/OldPhone_csharp
 :toc:
 
 The method `oldphone` takes a string as an argument and returns the correct output corresponding to number inputs.
 
 ****
-*See the C# answer to this exercise https://github.com/BenjaminNeustadt/OldPhone_csharp[here].*
+*See the C# answer to this exercise {url-csharp-version}[here].*
 ****
 
 == Usage
