@@ -1,7 +1,83 @@
-= OldPhone exercise
+= OldPhone Coding Challenge
 Benjamin Neustadt
-:source-highlighter: csharp
+:source-highlighter: ruby
 :document-type: article
+// URLs:
+:url-csharp-version: https://github.com/BenjaminNeustadt/OldPhone_csharp
+:url-ruby-documentation: https://www.ruby-lang.org/en/documentation/
+:url-extraction-branch: https://github.com/BenjaminNeustadt/OldPhone/tree/redesign_into_class_2
+:url-rspec-documentation: https://rspec.info/
+
+:toc:
+
+OldPhonePad is a program to decode number values using the same digit into their correlating letter, punctuation and space values.
+The method `oldphone` takes a string as an argument and returns the correct output corresponding to number inputs.
+
+Key documentation
+
+* {url-ruby-documentation}[Ruby Documentation]
+* {url-rspec-documentation}[RSpec]
+
+
+****
+*See the C# answer to this exercise {url-csharp-version}[here].*
+****
+
+== Usage
+.*Installation*
+
+* Git clone this repository:
+[source,shell]
+----
+ git clone https://github.com/BenjaminNeustadt/OldPhone.git 
+----
+
+* Install the gems:
+[source,shell]
+----
+ bundle install
+----
+
+* Run the tests:
+[source,shell]
+----
+ rspec
+----
+
+.*Program Usage*
+
+* To use the program open the Ruby REPL with the path of your local copy:
+[source,shell]
+----
+irb -r ./lib/oldphone.rb
+----
+* To run the program in the REPL:
+[source,shell]
+----
+oldphone("[a string of valid numbers]")<1>
+----
+<1> When using the same number for different letters under that button, or the same letter twice, use a space in between.
+
+== Process Thoughts
+
+There is currently one method, 
+as I was mostly interested in seeing how to approach this exercise in a language I am familiar with before doing it in {url-csharp-version}[C#].
+
+The testing framework used is {url-rspec-documentation}[RSpec].
+
+I would rather put it into a class.`oldphone` method should be the public facing interface method. 
+The deletion will be another method, and the mapping is again another one, the latter two being private, for internal use only. 
+The design of this extraction has been started on {url-extraction-branch}[this branch], though the tests should not be run from there as they will fail.
+
+The user should therefore only interact with `oldphone`. 
+The business logic shoud not happen on `oldphone`, 
+it should happen behind the scenes in something that we can imagine
+to be a model, if we use the MVC design as an analogy.  
+The view is included in the public facing interface of oldphone, 
+as it is what is used to return something that can then be output by the user.
+
+
+== Original Instructions
 
 [.text-center]
 ****
@@ -47,17 +123,22 @@ same button after each other: “222 2 22” -> “CAB”.
 
 
 ****
-.The Directions
+.*The Directions*
 [source, md]
 ----
 Please design and document a class of method that will turn any input to <1>
 OldPhonePad into the correct output.
-Assume that a send # will always be included at the end of every input.
+Assume that a send (represented as a literally the _#_) will always be included at the end of every input. <2>
 ----
 <1> Is the "class of method" supposed to read "class or method"?
+    This word, I think should be "or" instead, and I have applied this assumption before I have asked for confirmation.
+<2> What to do if additional information is found after the "send" is described in the writing below.
 
-This word, I think should be "or" instead, and I have applied this
-assumption before I have asked for confirmation.
+As an unspecified behaviour,
+if we reach the pound sign and find more characters after that pound sign
+(the signal to send) we will send everything up until then,
+and ignore any input after that signal.
+
 ****
 
 ----
@@ -66,23 +147,20 @@ public static String OldPhonePad (string input) {
 }
 ----
 
-== *Input - Output table*
+== *Examples*
 
-Examples:
-
-[source, csharp]
+[source, ruby]
 ----
-OldPhonePad(“33#”) => output: E
-//add more simple here
-OldPhonePad(“227*#”) => output: B
-OldPhonePad(“4433555 555666#”) => output: HELLO
-OldPhonePad(“443355 55666#”) => output: HEKKO
-OldPhonePad(“8 88777444666*664#”) => output: ?????
+old_phone_pad(“33#”) => output: E
+old_phone_pad(“227*#”) => output: B
+old_phone_pad(“4433555 555666#”) => output: HELLO
+old_phone_pad(“443355 55666#”) => output: HEKKO
+old_phone_pad(“8 88777444666*664#”) => output: ?????
 ----
 
 == Approach
 
-=== Our keyboard with these values
+=== key-pad values
 
 |===
 | sequence letter | sequence letter | sequence letter
@@ -100,37 +178,3 @@ OldPhonePad(“8 88777444666*664#”) => output: ?????
 ^| 9 w  ^| 99 x  ^| 999 y 9999 z
 
 |===
-
-=== *Pseudo code*
-
-* Option 1:
-.
-Given a string go through that string and check matches that correspond
-to an array of hashes holding particular values
-.
-constant_number_attributions= [{2:a},{22:b},{222:c}...]
-.
-* Option 2:
-.
-constant_number_attributions= [ [a,b,c], [d, e, f], [g, h, i]]
-.
-Look at string, split it into an array, then on each element in the
-array check to see if that matches any of the elements in the
-constant_number_attributions
-.
-* Option 3: regex matching
-* Option 4: counting
-
-=== Process Thoughts
-
-.How to get to the numbers
-It's better to have the numbers, represented as strings because we might want to change the
-value of certain numbers later on, if we need to expand out (i.e have 0
-or 000 refer to a symbol or ).
-
-.Ideas for business logic
-[source, ruby]
-----
-string.scan(/0+|1+|2+|3+|4+|5+|6+|7+|8+|9+/)
-----
-
