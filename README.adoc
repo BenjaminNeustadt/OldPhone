@@ -1,6 +1,6 @@
 = OldPhone Coding Challenge
 Benjamin Neustadt
-:source-highlighter: ruby
+:source-highlighter: rouge
 :document-type: article
 // URLs:
 :url-csharp-version: https://github.com/BenjaminNeustadt/OldPhone_csharp
@@ -141,21 +141,21 @@ and ignore any input after that signal.
 
 ****
 
+[source, ruby]
 ----
-public static String OldPhonePad (string input) {
-// Please write your implementation here!
-}
+def oldphonepad (input)
+  # Please write your implementation here!
+end
 ----
 
 == *Examples*
 
 [source, ruby]
 ----
-old_phone_pad(“33#”) => output: E
-old_phone_pad(“227*#”) => output: B
-old_phone_pad(“4433555 555666#”) => output: HELLO
-old_phone_pad(“443355 55666#”) => output: HEKKO
-old_phone_pad(“8 88777444666*664#”) => output: ?????
+oldphonepad(“33#”) # => output: E
+oldpgonepad(“227*#”) # => output: B
+oldpgonepad(“4433555 555666#”) # => output: HELLO
+oldpgonepad(“8 88777444666*664#”) # => output: ?????
 ----
 
 == Approach
