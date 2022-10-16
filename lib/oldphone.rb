@@ -39,22 +39,36 @@ end
 
 class Transform
 
+  public
+
+  def message_to_words(str)
+    arranged = sort(str)
+    revised = check_for_deletions(arranged)
+    translate(revised)
+  end
+
   def initialize(input)
     @input = input
   end
 
-  def message_to_words(str)
-    result = sort(str)
-    while result.include? '*'
-      result.delete_at(result.index('*') - 1)
-      result.delete_at(result.index('*'))
-    end
-    translation = result.map {|digit_input| Letters[digit_input]}
-    translation.join
+  private
+
+  def translate(collection)
+    collection
+      .map {|digit_input| Letters[digit_input]}
+      .join
   end
 
   def sort(str)
     str.scan(/0+|1+|2+|3+|4+|5+|6+|7+|8+|9+|\*/)
+  end
+
+  def check_for_deletions(input)
+    while input.include? '*'
+      input.delete_at(input.index('*') - 1)
+      input.delete_at(input.index('*'))
+    end
+    input
   end
 
 end
