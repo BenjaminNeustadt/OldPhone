@@ -44,13 +44,17 @@ class Transform
   end
 
   def message_to_words(str)
-    result = str.scan(/0+|1+|2+|3+|4+|5+|6+|7+|8+|9+|\*/)
+    result = sort(str)
     while result.include? '*'
       result.delete_at(result.index('*') - 1)
       result.delete_at(result.index('*'))
     end
     translation = result.map {|digit_input| Letters[digit_input]}
     translation.join
+  end
+
+  def sort(str)
+    str.scan(/0+|1+|2+|3+|4+|5+|6+|7+|8+|9+|\*/)
   end
 
 end
