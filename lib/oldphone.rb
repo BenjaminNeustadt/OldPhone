@@ -33,11 +33,24 @@ Letters = {
   }
 
 def oldphone(str)
-  result = str.scan(/0+|1+|2+|3+|4+|5+|6+|7+|8+|9+|\*/)
-  while result.include? '*'
-    result.delete_at(result.index('*') - 1)
-    result.delete_at(result.index('*'))
+  transform = Transform.new(str)
+  transform.message_to_words(str)
+end
+
+class Transform
+
+  def initialize(input)
+    @input = input
   end
-  translation = result.map {|digit_input| Letters[digit_input]}
-  translation.join
+
+  def message_to_words(str)
+    result = str.scan(/0+|1+|2+|3+|4+|5+|6+|7+|8+|9+|\*/)
+    while result.include? '*'
+      result.delete_at(result.index('*') - 1)
+      result.delete_at(result.index('*'))
+    end
+    translation = result.map {|digit_input| Letters[digit_input]}
+    translation.join
+  end
+
 end
