@@ -7,7 +7,6 @@ Benjamin Neustadt
 :url-ruby-documentation: https://www.ruby-lang.org/en/documentation/
 :url-extraction-branch: https://github.com/BenjaminNeustadt/OldPhone/tree/redesign_into_class_2
 :url-rspec-documentation: https://rspec.info/
-
 :toc:
 
 OldPhonePad is a program to decode number values using the same digit into their correlating letter, punctuation and space values.
@@ -29,7 +28,7 @@ Key documentation
 * Git clone this repository:
 [source,shell]
 ----
- git clone https://github.com/BenjaminNeustadt/OldPhone.git 
+ git clone https://github.com/BenjaminNeustadt/OldPhone.git
 ----
 
 * Install the gems:
@@ -60,20 +59,20 @@ oldphone("[a string of valid numbers]")<1>
 
 == Process Thoughts
 
-There is currently one method, 
+There is currently one method,
 as I was mostly interested in seeing how to approach this exercise in a language I am familiar with before doing it in {url-csharp-version}[C#].
 
 The testing framework used is {url-rspec-documentation}[RSpec].
 
-I would rather put it into a class.`oldphone` method should be the public facing interface method. 
-The deletion will be another method, and the mapping is again another one, the latter two being private, for internal use only. 
+I would rather put it into a class.`oldphone` method should be the public facing interface method.
+The deletion will be another method, and the mapping is again another one, the latter two being private, for internal use only.
 The design of this extraction has been started on {url-extraction-branch}[this branch], though the tests should not be run from there as they will fail.
 
-The user should therefore only interact with `oldphone`. 
-The business logic shoud not happen on `oldphone`, 
+The user should therefore only interact with `oldphone`.
+The business logic shoud not happen on `oldphone`,
 it should happen behind the scenes in something that we can imagine
-to be a model, if we use the MVC design as an analogy.  
-The view is included in the public facing interface of oldphone, 
+to be a model, if we use the MVC design as an analogy.
+The view is included in the public facing interface of oldphone,
 as it is what is used to return something that can then be output by the user.
 
 
