@@ -59,21 +59,24 @@ oldphone("[a string of valid numbers]")<1>
 
 == Process Thoughts
 
-There is currently one method,
-as I was mostly interested in seeing how to approach this exercise in a language I am familiar with before doing it in {url-csharp-version}[C#].
+There is currently one method, `oldphone`, the public facing interface method.
+It calls a class called `Transform` that holds all of the business logic.  The
+design is such that other methods could also utilize the logic that `Transform`
+class holds.  The user therefore only interacts with `oldphone`, although the
+business logic does not happen on `oldphone`, but rather behind the scenes on
+the backend `Transform` class. `oldphone` is therefore like the view, that
+presents the output to us.
 
 The testing framework used is {url-rspec-documentation}[RSpec].
 
-I would rather put it into a class.`oldphone` method should be the public facing interface method.
-The deletion will be another method, and the mapping is again another one, the latter two being private, for internal use only.
-The design of this extraction has been started on {url-extraction-branch}[this branch], though the tests should not be run from there as they will fail.
+The logic was first designed inside `oldphone` and then extracted into separate
+methods in a class that also holds a module with the first of what could be
+many regular expressions. A constant called `morpheme_dictionary` holds the
+number-letter attributes.
 
-The user should therefore only interact with `oldphone`.
-The business logic shoud not happen on `oldphone`,
-it should happen behind the scenes in something that we can imagine
-to be a model, if we use the MVC design as an analogy.
-The view is included in the public facing interface of oldphone,
-as it is what is used to return something that can then be output by the user.
+The only thing left to do on this is slightly modify the tests to include
+`Transform`, as currently the tests only test the public facing interface
+`oldphone`.
 
 
 == Original Instructions
@@ -159,7 +162,7 @@ oldpgonepad(“8 88777444666*664#”) # => output: ?????
 
 == Approach
 
-=== key-pad values
+=== keypad values
 
 |===
 | sequence letter | sequence letter | sequence letter
