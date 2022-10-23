@@ -51,10 +51,10 @@ class Transform
 
   def initialize(encoded_message)
     @message = encoded_message.scan(RE[:repeating_digits])
-    deletions
+    check_for_deletions
   end
 
-  def deletions
+  def check_for_deletions
     while message.include? '*'
       message.delete_at(message.index('*') - 1)
       message.delete_at(message.index('*'))
