@@ -1,13 +1,7 @@
-module RegularExpressions
-  module Dictionary
-  RegularExpression = {
-    repeating_digits: /0+|1+|2+|3+|4+|5+|6+|7+|8+|9+|\*/
-  }
-  end
-end
+require './lib/expressions.rb'
 
-class Transform
-  include RegularExpressions::Dictionary
+class Message
+  include RegularExpressions
 
   Keypad_Morpheme = {
     "1"    => '&',
@@ -42,19 +36,16 @@ class Transform
     "9999" => 'Z',
   }
 
-  RE = RegularExpression
-  private_constant :RE
-
   private
 
   attr_reader :message
 
   def initialize(encoded_message)
     @message = encoded_message.scan(RE[:repeating_digits])
-    check_for_deletions
+    process_deletions
   end
 
-  def check_for_deletions
+  def process_deletions
     while message.include? '*'
       message.delete_at(message.index('*') - 1)
       message.delete_at(message.index('*'))

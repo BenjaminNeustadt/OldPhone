@@ -1,6 +1,6 @@
 require_relative 'transform.rb'
 
-def oldphone(str)
-  Transform.new(str).to_s
+def oldphone(encoded_message)
+  Message.new(encoded_message).to_s
 end
 
